@@ -1,0 +1,1 @@
+A configurable Python expected-value calculator for trading-card scenarios. Every drop, tax and marketplace fee rate is explicit instead of being hard-coded.

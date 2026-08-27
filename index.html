@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A configurable Python expected-value calculator for trading-card scenarios. Every drop, tax and marketplace fee rate is explicit instead of being hard-coded.">
+  <title>Trading Card Break-even Estimator — Live Demo</title>
+  <link rel="stylesheet" href="web_demo/demo.css">
+  <script src="https://cdn.jsdelivr.net/pyodide/v314.0.4/full/pyodide.js"></script>
+  
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">Mateo Trucco · Live Demo</div>
+      <nav class="links">
+        <a class="btn" href="https://github.com/MateoTrucco/trading_card_estimator" target="_blank" rel="noreferrer">Source ↗</a>
+        <a class="btn" href="https://mateotrucco.github.io/">Portfolio</a>
+      </nav>
+    </header>
+    <section class="hero">
+      <div class="card">
+        <p class="eyebrow">Lab · Python · Calculator</p>
+        <h1>Trading Card Break-even Estimator</h1>
+        <p class="muted">A configurable Python expected-value calculator for trading-card scenarios. Every drop, tax and marketplace fee rate is explicit instead of being hard-coded.</p>
+      </div>
+      <aside class="card">
+        <span class="badge">DEMO</span>
+        <h2 style="margin-top:12px">Try it here</h2>
+        <p class="muted">This page is intentionally scoped as a portfolio demo. See the repository README for the full desktop/backend scope and limitations.</p>
+      </aside>
+    </section>
+    <section class="card"><div class="grid"><div class="field"><label>Total cards</label><input id="cards" value="10"></div><div class="field"><label>Expected drop rate (%)</label><input id="drop" value="50"></div><div class="field"><label>Average sale price</label><input id="sale" value="0.20"></div><div class="field"><label>Game price</label><input id="price" value="0.50"></div><div class="field"><label>Purchase tax (%)</label><input id="tax" value="10"></div><div class="field"><label>Marketplace fee (%)</label><input id="fee" value="5"></div></div><div class="actions"><button class="primary" id="run">Estimate</button></div><p class="status" data-runtime-status>Preparing Python runtime…</p><div class="output" id="output"></div></section>
+    <footer class="footer">Demo site for <code>trading_card_estimator</code>. Source and tests live in the repository.</footer>
+  </main>
+  <script type="module" src="web_demo/demo.js"></script>
+</body>
+</html>
