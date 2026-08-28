@@ -22,6 +22,40 @@ class Estimate:
     profit: Decimal
 
 
+def break_even_sale_price(
+    total_cards: object,
+    drop_rate_percent: object,
+    game_price: object,
+    purchase_tax_percent: object = 0,
+    marketplace_fee_percent: object = 0,
+) -> Decimal | None:
+    """Return the required average card price, or ``None`` if no cards are expected."""
+    cards = _decimal(total_cards, "total_cards")
+    drop_rate = _decimal(drop_rate_percent, "drop_rate_percent")
+    price = _decimal(game_price, "game_price")
+    purchase_tax = _decimal(purchase_tax_percent, "purchase_tax_percent")
+    marketplace_fee = _decimal(marketplace_fee_percent, "marketplace_fee_percent")
+    if cards < 0 or cards != cards.to_integral_value():
+        raise ValueError("total_cards must be a non-negative integer")
+    if price < 0:
+        raise ValueError("game_price cannot be negative")
+    for field, value in (("drop rate", drop_rate), ("purchase tax", purchase_tax), ("marketplace fee", marketplace_fee)):
+        if value < 0 or value > 100:
+            raise ValueError(f"{field} must be between 0 and 100")
+    expected_cards = cards * drop_rate / Decimal("100")
+    retained_rate = Decimal("1") - marketplace_fee / Decimal("100")
+    if expected_cards == 0 or retained_rate == 0:
+        return None
+    purchase_total = price * (Decimal("1") + purchase_tax / Decimal("100"))
+    return (purchase_total / expected_cards / retained_rate).quantize(_CENT, rounding=ROUND_HALF_UP)
+
+
+def roi_percent(estimate: Estimate) -> Decimal | None:
+    if estimate.purchase_total == 0:
+        return None
+    return (estimate.profit / estimate.purchase_total * Decimal("100")).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP)
+
+
 def _decimal(value: object, field: str) -> Decimal:
     try:
         result = Decimal(str(value))

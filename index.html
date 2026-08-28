@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A configurable Python expected-value calculator for trading-card scenarios. Every drop, tax and marketplace fee rate is explicit instead of being hard-coded.">
-  <title>Trading Card Break-even Estimator — Live Demo</title>
+  <title>Trading Card Break-even Estimator — Interactive Lab</title>
   <link rel="stylesheet" href="web_demo/demo.css">
+  <link rel="stylesheet" href="web_demo/shell.css">
   <script src="https://cdn.jsdelivr.net/pyodide/v314.0.4/full/pyodide.js"></script>
   
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
-      <div class="brand">Mateo Trucco · Live Demo</div>
+      <div class="brand">Mateo Trucco · Project Lab</div>
       <nav class="links">
         <a class="btn" href="https://github.com/MateoTrucco/trading_card_estimator" target="_blank" rel="noreferrer">Source ↗</a>
         <a class="btn" href="https://mateotrucco.github.io/">Portfolio</a>
@@ -25,14 +26,15 @@
         <p class="muted">A configurable Python expected-value calculator for trading-card scenarios. Every drop, tax and marketplace fee rate is explicit instead of being hard-coded.</p>
       </div>
       <aside class="card">
-        <span class="badge">DEMO</span>
-        <h2 style="margin-top:12px">Try it here</h2>
-        <p class="muted">This page is intentionally scoped as a portfolio demo. See the repository README for the full desktop/backend scope and limitations.</p>
+        <span class="badge">INTERACTIVE LAB</span>
+        <h2 style="margin-top:12px">Explore the workflow</h2>
+        <p class="muted">Use the interactive workspace below to exercise the project's core logic. Source, tests and setup instructions are available in the repository.</p>
       </aside>
     </section>
-    <section class="card"><div class="grid"><div class="field"><label>Total cards</label><input id="cards" value="10"></div><div class="field"><label>Expected drop rate (%)</label><input id="drop" value="50"></div><div class="field"><label>Average sale price</label><input id="sale" value="0.20"></div><div class="field"><label>Game price</label><input id="price" value="0.50"></div><div class="field"><label>Purchase tax (%)</label><input id="tax" value="10"></div><div class="field"><label>Marketplace fee (%)</label><input id="fee" value="5"></div></div><div class="actions"><button class="primary" id="run">Estimate</button></div><p class="status" data-runtime-status>Preparing Python runtime…</p><div class="output" id="output"></div></section>
-    <footer class="footer">Demo site for <code>trading_card_estimator</code>. Source and tests live in the repository.</footer>
+    <section class="card"><div class="pill-row"><button type="button" data-preset="cautious">Cautious</button><button type="button" data-preset="optimistic">Optimistic</button><button type="button" data-preset="thin-margin">Thin margin</button></div><div class="grid"><div class="field"><label for="cards">Total cards</label><input id="cards" type="number" min="0" value="10"></div><div class="field"><label for="drop">Expected drop rate (%)</label><input id="drop" type="number" min="0" max="100" value="50"></div><div class="field"><label for="sale">Average sale price</label><input id="sale" type="number" min="0" step="0.01" value="0.20"></div><div class="field"><label for="price">Game price</label><input id="price" type="number" min="0" step="0.01" value="0.50"></div><div class="field"><label for="tax">Purchase tax (%)</label><input id="tax" type="number" min="0" max="100" value="10"></div><div class="field"><label for="fee">Marketplace fee (%)</label><input id="fee" type="number" min="0" max="100" value="5"></div></div><div class="actions"><button class="primary" id="run">Recalculate</button></div><p class="status" data-runtime-status>Preparing Python runtime…</p><div class="metric-grid" id="estimateMetrics"></div><div class="meter" aria-label="Return on investment"><span id="roiMeter"></span></div><div class="output" id="output"></div></section>
+    <footer class="footer">Interactive browser build for <code>trading_card_estimator</code> · source and tests live in the repository.</footer>
   </main>
+  <script type="module" src="web_demo/shell.js"></script>
   <script type="module" src="web_demo/demo.js"></script>
 </body>
 </html>
